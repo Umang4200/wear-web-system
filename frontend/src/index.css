@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+
+  /* Base Colors (Luxury Minimal) */
+  --color-white: #ffffff;
+  --color-black: #111111;
+
+  /* Neutral Greys (Soft + Premium) */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f4f4f5;
+  --color-gray-200: #e4e4e7;
+  --color-gray-300: #d4d4d8;
+  --color-gray-400: #a1a1aa;
+  --color-gray-500: #71717a;
+  --color-gray-600: #52525b;
+  --color-gray-700: #3f3f46;
+  --color-gray-800: #27272a;
+  --color-gray-900: #18181b;
+
+  /* Accent Colors (Elegant, not flashy) */
+  --color-primary: #1a1a1a;       /* Main buttons (black-ish) */
+  --color-secondary: #c2a878;     /* Gold/beige luxury accent */
+  --color-accent: #6b7280;        /* Subtle UI highlights */
+
+  /* Optional Fashion Accent (Soft) */
+  --color-soft-rose: #e8cfcf;
+  --color-soft-beige: #f5f0ea;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-white text-gray-900 antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-sans);
+  }
+}
