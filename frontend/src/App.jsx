@@ -2,7 +2,7 @@ import AppRouter from "./router/AppRouter";
 import { ToastContainer, Bounce } from "react-toastify";
 import axios from "axios";
 function App() {
-  // axios.defaults.baseURL = "http://localhost:8000"
+  // axios.defaults.baseURL = import.meta.env.VITE_API_URL;
   return (
 
     //hellooo
