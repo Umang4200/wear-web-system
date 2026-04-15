@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import SellerSidebar from "./SellerSidebar";
 import axiosInstance from "../../AxiosInstance";
 import { MdMenu, MdHourglassEmpty, MdLogout, MdErrorOutline } from "react-icons/md";
@@ -9,10 +9,18 @@ function SellerLayout() {
   const [status, setStatus] = useState("pending"); // pending, approved, rejected
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+  const scrollRef = React.useRef(null);
 
   useEffect(() => {
     checkVerification();
   }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
 
   const checkVerification = async () => {
     try {
@@ -138,7 +146,7 @@ function SellerLayout() {
 
       <div className="flex flex-1 overflow-hidden bg-gray-50">
         <SellerSidebar />
-        <div className="flex-1 p-6 overflow-y-auto">
+        <div ref={scrollRef} className="flex-1 p-6 overflow-y-auto">
           <Outlet />
         </div>
       </div>

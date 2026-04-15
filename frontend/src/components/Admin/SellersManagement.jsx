@@ -138,7 +138,7 @@ function SellersManagement() {
     <div className="p-4 md:p-6">
       <div className="mb-8">
         <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Seller Management</h2>
-        <p className="text-gray-500 mt-2 font-medium">Review partnership applications and manage active sellers.</p>
+        {/* <p className="text-gray-500 mt-2 font-medium">Review partnership applications and manage active sellers.</p> */}
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">

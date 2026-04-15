@@ -72,9 +72,9 @@ export default function AdminProfile() {
       {/* Header */}
       <div className="mb-8">
         <h2 className="text-3xl font-extrabold text-gray-900">Admin Account</h2>
-        <p className="text-gray-600">
+        {/* <p className="text-gray-600">
           Manage your personal information and login details.
-        </p>
+        </p> */}
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">

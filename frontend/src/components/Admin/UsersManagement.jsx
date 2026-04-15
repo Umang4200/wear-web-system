@@ -80,7 +80,7 @@ function UsersManagement() {
       <div className="mb-6 flex justify-between items-end">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">User Management</h2>
-          <p className="text-gray-500 mt-1">Manage all customers and sellers here.</p>
+          {/* <p className="text-gray-500 mt-1">Manage all customers and sellers here.</p> */}
         </div>
       </div>
 

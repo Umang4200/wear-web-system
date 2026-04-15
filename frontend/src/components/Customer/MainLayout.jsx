@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, ScrollRestoration } from "react-router-dom";
 import UserNavbar from "./UserNavbar";
 import Footer from "./Footer";
 
@@ -17,6 +17,7 @@ function MainLayout() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollRestoration />
       <UserNavbar/>
       <main className="flex-grow pt-16">
         <Outlet />

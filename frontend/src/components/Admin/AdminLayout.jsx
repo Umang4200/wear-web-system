@@ -1,9 +1,18 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
 import { MdMenu } from "react-icons/md";
 
 function AdminLayout() {
+  const location = useLocation();
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* Header */}
@@ -19,7 +28,7 @@ function AdminLayout() {
         <AdminSidebar />
 
         {/* Main Content Area */}
-        <div className="flex-1 p-6 overflow-y-auto">
+        <div ref={scrollRef} className="flex-1 p-6 overflow-y-auto">
           <Outlet />
         </div>
       </div>

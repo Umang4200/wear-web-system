@@ -50,8 +50,8 @@ function AdminDashboard() {
     <div className="p-4 md:p-6 lg:p-8">
       {/* HEADER */}
       <div className="mb-10">
-        <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Executive Dashboard</h2>
-        <p className="text-gray-500 mt-2 font-medium">Platform performance and demographic analytics overview.</p>
+        <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">Admin Dashboard</h2>
+        {/* <p className="text-gray-500 mt-2 font-medium">Platform performance and demographic analytics overview.</p> */}
       </div>
 
       {/* STATS GRID */}
@@ -90,7 +90,7 @@ function AdminDashboard() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h3 className="text-lg font-bold text-gray-900">Revenue Performance</h3>
-              <p className="text-sm text-gray-500">Gross revenue trends over the last 7 days</p>
+              {/* <p className="text-sm text-gray-500">Gross revenue trends over the last 7 days</p> */}
             </div>
             <div className="bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
               Weekly View
@@ -139,7 +139,7 @@ function AdminDashboard() {
         <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
           <div className="mb-8">
             <h3 className="text-lg font-bold text-gray-900">User Demographics</h3>
-            <p className="text-sm text-gray-500">Breakdown of platform participants</p>
+            {/* <p className="text-sm text-gray-500">Breakdown of platform participants</p> */}
           </div>
           
           <div className="h-[350px] w-full flex items-center justify-center">

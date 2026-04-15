@@ -128,7 +128,7 @@ function HomePage() {
       </section>
 
       {/* ================= PRODUCTS CATEGORY PREVIEW (Optional Enhancement) ================= */}
-      <section className="py-20 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* <section className="py-20 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         <div
           onClick={() => navigate("/search?query=Women")}
           className="relative h-[60vh] group overflow-hidden rounded-2xl cursor-pointer"
@@ -180,7 +180,7 @@ function HomePage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ================= PRODUCTS SECTION ================= */}
       <section id="new-arrivals" className="py-20 px-6 max-w-7xl mx-auto">

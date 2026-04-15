@@ -244,10 +244,10 @@ function CategoryManagement() {
       {/* HEADER */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-extrabold text-gray-900">Category Hierarchy</h2>
-          <p className="text-gray-600">
+          <h2 className="text-3xl font-extrabold text-gray-900">Categories</h2>
+          {/* <p className="text-gray-600">
             Manage your categories across three levels of depth.
-          </p>
+          </p> */}
         </div>
         <Button onClick={handleAddClick} className="flex items-center gap-2 px-6 py-3">
           <MdAdd className="text-xl" /> Add Category
