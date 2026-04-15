@@ -21,7 +21,9 @@ dbConnection();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 
 app.use("/user", userRoutes);
 app.use("/category", categoryRoutes);
@@ -38,6 +40,10 @@ app.get("/", (req, res) => {
   res.send("<h1>Home Page</h1>");
 });
 
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "OK" });
+});
+
 app.listen(PORT, () => {
-  console.log(`App Running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
