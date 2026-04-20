@@ -242,15 +242,17 @@ function CategoryManagement() {
   return (
     <div className="p-6 max-w-7xl mx-auto">
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 mb-10">
         <div>
-          <h2 className="text-3xl font-extrabold text-gray-900">Categories</h2>
-          {/* <p className="text-gray-600">
-            Manage your categories across three levels of depth.
-          </p> */}
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Categories</h2>
+          {/* <p className="text-gray-500 mt-2 text-sm sm:text-base">Manage and organize your product hierarchy across three levels.</p> */}
         </div>
-        <Button onClick={handleAddClick} className="flex items-center gap-2 px-6 py-3">
-          <MdAdd className="text-xl" /> Add Category
+        <Button 
+          onClick={handleAddClick} 
+          className="flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto shadow-lg hover:shadow-indigo-100 transition-all active:scale-95 bg-indigo-600 text-white border-none"
+        >
+          <MdAdd className="text-2xl" /> 
+          <span className="font-bold tracking-wide uppercase text-sm">Add Category</span>
         </Button>
       </div>
 

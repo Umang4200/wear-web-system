@@ -249,7 +249,7 @@ function CategoryProducts() {
                     {/*  Wishlist */}
                     <button
                       onClick={(e) => toggleWishlist(item._id, e)}
-                      className="absolute top-4 right-4 p-2.5 bg-white/80 backdrop-blur rounded-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all hover:bg-white shadow-sm"
+                      className="absolute top-4 right-4 p-2.5 bg-white/80 backdrop-blur rounded-full lg:opacity-0 lg:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all hover:bg-white shadow-sm z-10"
                     >
                       {wishlist.includes(item._id) ? (
                         <FaHeart className="text-red-500 text-lg" />
@@ -275,8 +275,8 @@ function CategoryProducts() {
                     </div>
                   </div>
 
-                  {/* Add to Cart Overlay Button */}
-                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {/* View Product Button (Always visible on mobile, hover on desktop) */}
+                  <div className="mt-4 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                     <button
                       className="w-full bg-primary text-white py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
                     >

@@ -138,7 +138,7 @@ function ProductDetail() {
             {product?.brand || "WEAR WEB COLLECTION"}
           </p>
 
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900 mb-4">
             {product?.title}
           </h1>
 

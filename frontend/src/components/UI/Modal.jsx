@@ -14,7 +14,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
       />
 
       {/* MODAL CONTENT */}
-      <div className="relative bg-white w-full max-w-md rounded-2xl shadow-xl p-6 z-10">
+      <div className="relative bg-white w-full max-w-md mx-4 md:mx-0 rounded-2xl shadow-xl p-6 z-10 transition-all">
         
         {/* HEADER */}
         <div className="flex justify-between items-center mb-4">

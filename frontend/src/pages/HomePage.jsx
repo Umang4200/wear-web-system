@@ -93,10 +93,10 @@ function HomePage() {
         ))}
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10 text-white">
-          <p className="text-sm tracking-[0.3em] uppercase mb-4 font-medium opacity-90">
+          <p className="text-[10px] md:text-sm tracking-[0.3em] uppercase mb-4 font-medium opacity-90">
             Spring / Summer 2026
           </p>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight max-w-4xl">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-tight max-w-4xl px-2">
             ELEVATE YOUR <br className="hidden md:block" /> EVERYDAY STYLE
           </h1>
           <div className="flex gap-4">
@@ -106,7 +106,7 @@ function HomePage() {
                   .getElementById("new-arrivals")
                   .scrollIntoView({ behavior: "smooth" })
               }
-              className="bg-white text-black px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide hover:scale-105 transition-transform"
+              className="bg-white text-black px-6 md:px-8 py-3 md:py-3.5 rounded-full text-xs md:text-sm font-semibold tracking-wide hover:scale-105 transition-transform"
             >
               SHOP NOW
             </button>
@@ -209,7 +209,7 @@ function HomePage() {
                 {/* Wishlist Icon */}
                 <button
                   onClick={(e) => toggleWishlist(item._id, e)}
-                  className="absolute top-4 right-4 p-2.5 bg-white/80 backdrop-blur rounded-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all hover:bg-white shadow-sm"
+                  className="absolute top-4 right-4 p-2.5 bg-white/80 backdrop-blur rounded-full lg:opacity-0 lg:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all hover:bg-white shadow-sm z-10"
                 >
                   {wishlist.includes(item._id) ? (
                     <FaHeart className="text-red-500 text-lg" />
@@ -241,8 +241,8 @@ function HomePage() {
                 </div>
               </div>
 
-              {/* Add to Cart Overlay Button */}
-              <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              {/* View Product Button (Always visible on mobile, hover on desktop) */}
+              <div className="mt-4 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                 <button className="w-full bg-primary text-white py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
                   VIEW PRODUCT
                 </button>

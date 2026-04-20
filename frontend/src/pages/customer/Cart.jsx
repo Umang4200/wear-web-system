@@ -65,9 +65,9 @@ function Cart() {
   }
 
   return (
-    <div className="bg-white px-4 md:px-10 lg:px-16 py-12 md:py-20 min-h-screen">
+    <div className="bg-white px-4 md:px-10 lg:px-16 py-8 md:py-20 min-h-screen">
       <div className="w-full mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-black mb-12 uppercase">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-black mb-8 md:mb-12 uppercase">
           Your Bag
         </h1>
 

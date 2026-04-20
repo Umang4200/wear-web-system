@@ -177,9 +177,9 @@ function Checkout() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 md:py-20 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col gap-10">
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-black uppercase">
+    <div className="min-h-screen bg-gray-50 py-8 md:py-20 px-4 md:px-6">
+      <div className="max-w-7xl mx-auto flex flex-col gap-6 md:gap-10">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-black uppercase">
           Checkout
         </h1>
 

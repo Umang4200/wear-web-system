@@ -77,10 +77,10 @@ function UsersManagement() {
 
   return (
     <div>
-      <div className="mb-6 flex justify-between items-end">
+      <div className="mb-8 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">User Management</h2>
-          {/* <p className="text-gray-500 mt-1">Manage all customers and sellers here.</p> */}
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">User Management</h2>
+          {/* <p className="text-gray-500 mt-1 text-sm sm:text-base font-medium font-sans">Oversee all registered customers and sellers.</p> */}
         </div>
       </div>
 

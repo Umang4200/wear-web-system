@@ -20,7 +20,7 @@ function AdminSidebar() {
   ];
 
   return (
-    <div className="w-64 bg-white border-r border-gray-200 flex flex-col justify-between">
+    <div className="w-64 h-full bg-white border-r border-gray-200 flex flex-col justify-between overflow-y-auto no-scrollbar">
       {/* Menu */}
       <div className="mt-8 flex flex-col gap-7 px-5">
         {menuItems.map((item, index) => (

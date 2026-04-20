@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
-import { FaRegHeart } from "react-icons/fa";
-import { TiShoppingCart } from "react-icons/ti";
 import { HiMenu, HiX } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { FaRegHeart, FaChevronDown, FaChevronRight } from "react-icons/fa";
+import { TiShoppingCart } from "react-icons/ti";
+import { useNavigate, useLocation } from "react-router-dom";
 import axiosInstance from "../../AxiosInstance";
 import { toast } from "react-toastify";
 
@@ -14,10 +14,23 @@ function UserNavbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [token, setToken] = useState();
   const [name, setName] = useState("");
-
   const [categories, setCategories] = useState([]);
+  const [activeAccordion, setActiveAccordion] = useState(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  //  Scroll effect
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close menu on navigation
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   //  Scroll effect
   useEffect(() => {
@@ -212,32 +225,140 @@ function UserNavbar() {
         </div>
 
         {/* MOBILE MENU BUTTON */}
-        <div className="md:hidden text-2xl text-black">
+        <div className="md:hidden flex items-center gap-4">
+          <IoMdSearch 
+            className="text-2xl text-gray-600 cursor-pointer"
+            onClick={() => {
+              setMenuOpen(true);
+              // Focus search input after a short delay to allow drawer animation
+              setTimeout(() => document.getElementById('mobile-search')?.focus(), 300);
+            }}
+          />
+          <div className="relative">
+            <TiShoppingCart
+              onClick={() => (token ? navigate("/cart") : navigate("/login"))}
+              className="text-2xl text-gray-600 cursor-pointer"
+            />
+          </div>
           {menuOpen ? (
-            <HiX onClick={() => setMenuOpen(false)} />
+            <HiX className="text-2xl text-black cursor-pointer" onClick={() => setMenuOpen(false)} />
           ) : (
-            <HiMenu onClick={() => setMenuOpen(true)} />
+            <HiMenu className="text-2xl text-black cursor-pointer" onClick={() => setMenuOpen(true)} />
           )}
         </div>
       </nav>
 
-      {/* MOBILE MENU */}
-      {menuOpen && (
-        <div className="fixed top-16 left-0 w-full bg-white shadow-xl md:hidden z-40 border-t border-gray-100 flex flex-col">
-          <ul className="flex flex-col gap-4 p-6 text-gray-800 font-medium">
-            {categoryTree.map((cat) => (
-              <li key={cat._id} className="border-b border-gray-100 pb-2">{cat.name}</li>
-            ))}
+      {/* MOBILE DRAWER */}
+      <div className={`fixed inset-0 z-[100] md:hidden transition-all duration-300 ${menuOpen ? "visible" : "invisible"}`}>
+        {/* Overlay */}
+        <div 
+          className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${menuOpen ? "opacity-100" : "opacity-0"}`}
+          onClick={() => setMenuOpen(false)}
+        />
+        
+        {/* Drawer Content */}
+        <div className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 flex flex-col ${menuOpen ? "translate-x-0" : "translate-x-full"}`}>
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+            <h2 className="text-xl font-bold tracking-tight">MENU</h2>
+            <HiX className="text-2xl text-black cursor-pointer" onClick={() => setMenuOpen(false)} />
+          </div>
 
-            <button
-              className="mt-4 bg-primary text-white w-full py-3 rounded-xl font-medium"
-              onClick={() => navigate("/login")}
-            >
-              LOGIN
-            </button>
-          </ul>
+          <div className="flex-1 overflow-y-auto no-scrollbar">
+            {/* SEARCH */}
+            <div className="px-6 py-6 border-b border-gray-100">
+              <div className="flex items-center bg-gray-50 px-4 py-3 rounded-xl border border-gray-200">
+                <IoMdSearch className="text-gray-400 text-lg mr-2" />
+                <input
+                  id="mobile-search"
+                  type="text"
+                  placeholder="Search for items..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                  className="bg-transparent outline-none w-full text-sm font-medium"
+                />
+              </div>
+            </div>
+
+            {/* CATEGORIES */}
+            <div className="px-6 py-4">
+              <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Categories</h3>
+              <ul className="space-y-1">
+                {categoryTree.map((mainCat) => (
+                  <li key={mainCat._id} className="border-b border-gray-50 last:border-0">
+                    <div 
+                      className="flex items-center justify-between py-4 cursor-pointer"
+                      onClick={() => setActiveAccordion(activeAccordion === mainCat._id ? null : mainCat._id)}
+                    >
+                      <span className="font-bold text-gray-900">{mainCat.name}</span>
+                      {activeAccordion === mainCat._id ? <FaChevronDown className="text-xs" /> : <FaChevronRight className="text-xs text-gray-400" />}
+                    </div>
+                    
+                    {/* Sub-categories Accordion */}
+                    <div className={`overflow-hidden transition-all duration-300 ${activeAccordion === mainCat._id ? "max-h-[1000px] mb-4" : "max-h-0"}`}>
+                      <div className="pl-4 space-y-6 pt-2 border-l-2 border-gray-50 ml-1">
+                        {mainCat.children?.map((subCat) => (
+                          <div key={subCat._id}>
+                            <h4 className="text-[10px] font-black text-gray-400 uppercase mb-3 tracking-widest">{subCat.name}</h4>
+                            <div className="grid grid-cols-2 gap-3">
+                              {subCat.children?.map((child) => (
+                                <button
+                                  key={child._id}
+                                  onClick={() => navigate(`/products/category/${child._id}`)}
+                                  className="text-left text-sm text-gray-600 hover:text-black py-1"
+                                >
+                                  {child.name}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="px-6 py-8 mt-4 border-t border-gray-50 space-y-4">
+              <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2">My Account</h3>
+              {token ? (
+                <div className="grid grid-cols-2 gap-4">
+                  <button 
+                    onClick={() => navigate("/profile")}
+                    className="flex flex-col items-center justify-center p-4 rounded-2xl bg-gray-50 hover:bg-indigo-50 transition-colors group"
+                  >
+                    <CgProfile className="text-2xl mb-2 text-gray-400 group-hover:text-indigo-600" />
+                    <span className="text-xs font-bold text-gray-900 underline underline-offset-4 decoration-indigo-200">Profile</span>
+                  </button>
+                  <button 
+                    onClick={() => navigate("/wishlist")}
+                    className="flex flex-col items-center justify-center p-4 rounded-2xl bg-gray-50 hover:bg-pink-50 transition-colors group"
+                  >
+                    <FaRegHeart className="text-2xl mb-2 text-gray-400 group-hover:text-pink-500" />
+                    <span className="text-xs font-bold text-gray-900 underline underline-offset-4 decoration-pink-100">Wishlist</span>
+                  </button>
+                </div>
+              ) : (
+                <button
+                  className="w-full bg-primary text-white py-4 rounded-2xl font-bold tracking-widest text-xs uppercase shadow-sm hover:scale-[1.02] transition-transform"
+                  onClick={() => navigate("/login")}
+                >
+                  Sign In / Register
+                </button>
+              )}
+            </div>
+          </div>
+          
+          {/* Footer of Drawer */}
+          <div className="p-6 bg-gray-50/50 border-t border-gray-100">
+            <p className="text-[10px] text-gray-400 font-medium text-center uppercase tracking-widest">
+              Wear Web © 2026 Collection
+            </p>
+          </div>
         </div>
-      )}
+      </div>
 
       {/* SPACER (Removed because we set main pt-16 in layout, but wait - let's check if layout has pt-16) */}
     </>
