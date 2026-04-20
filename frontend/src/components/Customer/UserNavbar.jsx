@@ -105,6 +105,16 @@ function UserNavbar() {
       }
     });
 
+    // Sort Level 1 categories: Men, Women, Kids
+    const order = ["Men", "Women", "Kids"];
+    roots.sort((a, b) => {
+      let indexA = order.indexOf(a.name);
+      let indexB = order.indexOf(b.name);
+      if (indexA === -1) indexA = 999;
+      if (indexB === -1) indexB = 999;
+      return indexA - indexB;
+    });
+
     return roots;
   };
 
